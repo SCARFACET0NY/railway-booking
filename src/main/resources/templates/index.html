@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Railway Booking</title>
+</head>
+<body>
+    <ul>
+        <li th:each="trip : ${trips}" th:text="${trip.route.arrivalStation.city} + ' ' + ${trip.train.locomotive.manufacturer}"></li>
+    </ul>
+</body>
+</html>

@@ -1,6 +1,5 @@
 package com.anton.railway.booking.enitity;
 
-import com.anton.railway.booking.enitity.TripSeat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
