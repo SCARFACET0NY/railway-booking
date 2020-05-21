@@ -21,7 +21,7 @@ header .logo span {
     position: relative;
     top: 7px;
     left: 15px;
-    font-size: 30px;
+    font-size: 32px;
     font-weight: bold;
 }
 
@@ -35,7 +35,7 @@ header .btn-light {
 }
 
 .sub-header .nav-item {
-    font-size: 32px;
+    font-size: 30px;
     padding: 0 40px;
     color: #343a40;
 }
