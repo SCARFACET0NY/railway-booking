@@ -5,20 +5,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "train")
-public class Train {
+@Table(name = "seat_type")
+public class SeatType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long trainId;
-    @ManyToOne
-    @JoinColumn(name = "locomotive_id")
-    private Locomotive locomotive;
-    @OneToMany(mappedBy = "train")
-    private List<Wagon> wagons;
+    private Long seatTypeId;
+    @Column(name = "class")
+    private String seatClass;
+    @Column(name = "price_coefficient")
+    private BigDecimal priceCoefficient;
 }

@@ -5,20 +5,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "train")
-public class Train {
+@Table(name = "wagon_type")
+public class WagonType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long trainId;
-    @ManyToOne
-    @JoinColumn(name = "locomotive_id")
-    private Locomotive locomotive;
-    @OneToMany(mappedBy = "train")
-    private List<Wagon> wagons;
+    private Long wagonTypeId;
+    @Column(name = "type")
+    private String size;
+    @Column(name = "capacity")
+    private Integer capacity;
 }

@@ -1,13 +1,11 @@
 package com.anton.railway.booking.enitity;
 
-import com.anton.railway.booking.enitity.Seat;
-import com.anton.railway.booking.enitity.Trip;
+import com.anton.railway.booking.enitity.enums.SeatStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -24,6 +22,7 @@ public class TripSeat {
     @OneToOne
     @JoinColumn(name = "seat_id")
     private Seat seat;
-    @Column(name = "fare")
-    private BigDecimal fare;
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private SeatStatus seatStatus;
 }

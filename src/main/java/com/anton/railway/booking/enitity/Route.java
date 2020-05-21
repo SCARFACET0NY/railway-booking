@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -23,6 +24,8 @@ public class Route {
     private Station arrivalStation;
     @Column(name = "duration_in_minutes")
     private Integer durationInMinutes;
+    @Column(name = "base_price")
+    private BigDecimal basePrice;
     @Column(name = "code")
     private String code;
 }
