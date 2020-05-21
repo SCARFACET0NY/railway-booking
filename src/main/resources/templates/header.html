@@ -1,0 +1,19 @@
+<header xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="dropdown">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" th:text="${#locale}"></button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="?locale=en">en</a>
+                <a class="dropdown-item" href="?locale=ru">ru</a>
+                <a class="dropdown-item" href="?locale=uk">uk</a>
+            </div>
+        </div>
+        <div class="logo">
+            <a class="nav-link text-light" href="/">
+                <img th:src="@{/img/train _icon_64.png}"/>
+                <span th:text="#{booking.title}"></span>
+            </a>
+        </div>
+        <a type="button" class="btn btn-light btn-lg" th:href="@{/login}" th:text="#{booking.login}"></a>
+    </nav>
+</header>

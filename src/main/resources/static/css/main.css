@@ -1,0 +1,250 @@
+body {
+    font-family: Garamond, Serif;
+    background-color: white;
+    min-height: 100vh;
+    position: relative;
+}
+
+.container-fluid, .container {
+    padding: 2em 6em;
+}
+
+header {
+    min-height: 100px;
+}
+
+header .logo, .copyright {
+    margin: 0 auto;
+}
+
+header .logo span {
+    position: relative;
+    top: 7px;
+    left: 15px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+header .btn-light {
+    margin-right: 0.5em;
+}
+
+.sub-header {
+    margin-top: -4px;
+    height: 100px;
+}
+
+.sub-header .nav-item {
+    font-size: 32px;
+    padding: 0 40px;
+    color: #343a40;
+}
+
+.sub-header .nav-link {
+    color: #343a40;
+}
+
+.sub-header .nav-link:hover {
+    color: white;
+}
+
+.sub-header .nav-link .icon {
+    position: relative;
+    bottom: 4px;
+}
+
+.sub-header .nav-link:hover {
+    color: white;
+}
+
+.dropdown .dropdown-toggle {
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.btn-group-lg {
+    margin-right: 2em;
+}
+
+.btn-group-lg button {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.search input {
+    padding: 0.7em;
+}
+
+h2 {
+    margin-bottom: 1em;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.card {
+    margin-bottom: 4em;
+    border-radius: 0.5em;
+}
+
+.card .card-img-top {
+    border-radius: 0.5em;
+}
+
+.card .card-body {
+    padding-bottom: 0.5em;
+}
+
+.card .card-title {
+    font-weight: bold;
+    font-size: 26px;
+}
+.card .card-body .btn, .login .btn {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 0.5em;
+}
+
+.table {
+    width: 100%;
+}
+
+.table-striped {
+    margin-bottom: 0;
+}
+
+.login, .register, .error {
+    margin-top: 2em;
+}
+
+.login .btn, .register .btn, .error .btn {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.login .btn-info, .register .btn-info {
+    margin-top: 2em;
+}
+
+.cart {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 3em;
+}
+
+.cart-header {
+    margin: 1em;
+    text-align: center;
+}
+
+.cart .table {
+    font-size: 1em;
+}
+
+.cart .table th, .cart .table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.cart .table td form {
+    margin-block-end: 0;
+}
+
+.sign {
+    height: 1.5em;
+    width: 1.5em;
+    padding: 0;
+}
+.total {
+    text-align: right;
+}
+
+.date {
+    margin-top: -3px;
+    padding: 7px 12px
+}
+
+.home {
+    margin-top: 1em;
+}
+
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+footer .logo span {
+    position: relative;
+    top: 3px;
+    left: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.github {
+    margin-right: 10px;
+}
+
+.github span {
+    display: inline-block;
+    position: relative;
+    bottom: 4px;
+    left: 5px;
+}
+
+.alert {
+    font-size: 22px;
+    text-align: center;
+}
+
+.alert-success a {
+    color: green;
+}
+
+#accordion a {
+    color: black;
+}
+
+#accordion .card {
+    margin-bottom: 0;
+    border-radius: 0.25em;
+}
+
+#accordion .container-fluid {
+    padding: 0;
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 1.5em;
+    font-size: 1.5em;
+    color: grey;
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 1.5em;
+    margin-bottom: 3em;
+    font-size: 1.5em;
+    color: grey;
+}
+
+.pagination a {
+    color: black;
+}
+
+.pagination .active {
+    color: cornflowerblue;
+}
+
+.pagination a.disabled {
+    cursor: default;
+    pointer-events: none;
+    color: gray;
+}
+
+.red {
+    color: red;
+}
