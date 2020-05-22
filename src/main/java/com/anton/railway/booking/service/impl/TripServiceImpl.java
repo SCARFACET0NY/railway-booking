@@ -6,6 +6,7 @@ import com.anton.railway.booking.repository.TripRepository;
 import com.anton.railway.booking.service.TripService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,5 +49,16 @@ public class TripServiceImpl implements TripService {
     @Override
     public List<Trip> findAllScheduledTrips() {
         return tripRepository.findAllByTripStatus(TripStatus.SCHEDULED);
+    }
+
+    @Override
+    public List<Trip> searchTrips(String departureCity, String arrivalCity) {
+        return tripRepository.findAllByRouteDepartureStationCityAndRouteArrivalStationCity(departureCity, arrivalCity);
+    }
+
+    @Override
+    public List<Trip> searchTrips(String departureCity, String arrivalCity, LocalDate date) {
+        return tripRepository.findAllByRouteDepartureStationCityAndRouteArrivalStationCityAndDepartureDate(
+                departureCity, arrivalCity, date);
     }
 }

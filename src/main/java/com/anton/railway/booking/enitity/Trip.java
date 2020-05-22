@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -17,8 +18,10 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tripId;
+    @Column(name = "departure_date")
+    private LocalDate departureDate;
     @Column(name = "departure_time")
-    private LocalDateTime departureTime;
+    private LocalTime departureTime;
     @Column(name = "trip_status")
     @Enumerated(value = EnumType.STRING)
     private TripStatus tripStatus;
