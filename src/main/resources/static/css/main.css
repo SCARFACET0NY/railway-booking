@@ -19,7 +19,7 @@ header .logo, .copyright {
 
 header .logo span {
     position: relative;
-    top: 7px;
+    top: 10px;
     left: 15px;
     font-size: 32px;
     font-weight: bold;
@@ -177,7 +177,7 @@ footer {
 
 footer .logo span {
     position: relative;
-    top: 3px;
+    top: 5px;
     left: 5px;
     font-size: 20px;
     font-weight: bold;

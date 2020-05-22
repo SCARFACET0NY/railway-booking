@@ -9,12 +9,14 @@
     <title>Railway Booking</title>
 </head>
 <body>
-    <th:block th:include="header.html" />
-    <th:block th:include="sub-header.html" />
+    <th:block th:include="header.html"/>
+    <th:block th:include="sub-header.html"/>
 
     <ul>
         <li th:each="trip : ${trips}" th:text="${trip.route.arrivalStation.city} + ' ' + ${trip.train.locomotive.manufacturer}"></li>
     </ul>
+
+    <th:block th:include="footer.html"/>
 
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/1.12.9/umd/popper.min.js}"></script>

@@ -1,0 +1,17 @@
+<footer xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="logo">
+            <a th:href="@{/}" class="nav-link text-light">
+                <img th:src="@{/img/train.png}" width="32" height="32"/>
+                <span th:text="#{booking.title}"></span>
+            </a>
+        </div>
+        <div class="copyright">
+            <span class="text-light" th:text="'© 2020 ' + #{booking.developer} + ': ' + #{booking.author}"></span>
+        </div>
+        <a class="github text-light nav-link" th:href="@{'https://github.com/SCARFACET0NY/railway-booking'}">
+            <i class="fa fa-github" style="font-size: 32px;"></i>
+            <span th:text="#{booking.github}"></span>
+        </a>
+    </nav>
+</footer>
