@@ -6,17 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class TripController {
+public class ScheduleController {
     private final TripService tripService;
 
-    public TripController(TripService tripService) {
+    public ScheduleController(TripService tripService) {
         this.tripService = tripService;
     }
 
-    @GetMapping("/")
-    public String getAllTrips(Model model) {
-        model.addAttribute("trips", tripService.findAll());
+    @GetMapping("/schedule")
+    public String getSchedule(Model model) {
+        model.addAttribute("trips", tripService.findAllScheduledTrips());
 
-        return "index";
+        return "schedule";
     }
 }

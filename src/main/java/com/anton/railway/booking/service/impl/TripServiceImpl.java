@@ -1,6 +1,7 @@
 package com.anton.railway.booking.service.impl;
 
 import com.anton.railway.booking.enitity.Trip;
+import com.anton.railway.booking.enitity.enums.TripStatus;
 import com.anton.railway.booking.repository.TripRepository;
 import com.anton.railway.booking.service.TripService;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,10 @@ public class TripServiceImpl implements TripService {
     @Override
     public void deleteById(Long id) {
         tripRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Trip> findAllScheduledTrips() {
+        return tripRepository.findAllByTripStatus(TripStatus.SCHEDULED);
     }
 }

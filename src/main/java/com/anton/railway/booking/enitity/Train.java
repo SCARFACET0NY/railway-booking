@@ -19,6 +19,8 @@ public class Train {
     @ManyToOne
     @JoinColumn(name = "locomotive_id")
     private Locomotive locomotive;
+    @Column(name = "number")
+    private String trainNumber;
     @OneToMany(mappedBy = "train")
     private List<Wagon> wagons;
 }
