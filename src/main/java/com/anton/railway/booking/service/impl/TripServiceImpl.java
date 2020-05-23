@@ -1,5 +1,7 @@
 package com.anton.railway.booking.service.impl;
 
+import com.anton.railway.booking.converter.TripToTripDto;
+import com.anton.railway.booking.dto.TripDto;
 import com.anton.railway.booking.enitity.Trip;
 import com.anton.railway.booking.enitity.enums.TripStatus;
 import com.anton.railway.booking.repository.TripRepository;
@@ -9,13 +11,16 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TripServiceImpl implements TripService {
     private final TripRepository tripRepository;
+    private final TripToTripDto tripToTripDto;
 
-    public TripServiceImpl(TripRepository tripRepository) {
+    public TripServiceImpl(TripRepository tripRepository, TripToTripDto tripToTripDto) {
         this.tripRepository = tripRepository;
+        this.tripToTripDto = tripToTripDto;
     }
 
     @Override
@@ -47,18 +52,21 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public List<Trip> findAllScheduledTrips() {
-        return tripRepository.findAllByTripStatus(TripStatus.SCHEDULED);
+    public List<TripDto> findAllScheduledTrips() {
+        return tripRepository.findAllByTripStatus(TripStatus.SCHEDULED).stream()
+                .map(tripToTripDto::convert).collect(Collectors.toList());
     }
 
     @Override
-    public List<Trip> searchTrips(String departureCity, String arrivalCity) {
-        return tripRepository.findAllByRouteDepartureStationCityAndRouteArrivalStationCity(departureCity, arrivalCity);
+    public List<TripDto> searchTrips(String departureCity, String arrivalCity) {
+        return tripRepository.findAllByRouteDepartureStationCityAndRouteArrivalStationCity(departureCity, arrivalCity)
+                .stream().map(tripToTripDto::convert).collect(Collectors.toList());
     }
 
     @Override
-    public List<Trip> searchTrips(String departureCity, String arrivalCity, LocalDate date) {
+    public List<TripDto> searchTrips(String departureCity, String arrivalCity, LocalDate date) {
         return tripRepository.findAllByRouteDepartureStationCityAndRouteArrivalStationCityAndDepartureDate(
-                departureCity, arrivalCity, date);
+                departureCity, arrivalCity, date).stream()
+                .map(tripToTripDto::convert).collect(Collectors.toList());
     }
 }

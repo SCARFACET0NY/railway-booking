@@ -29,8 +29,8 @@
                     <td th:text="${trip.train.trainNumber}"></td>
                     <td th:text="${trip.route.departureStation.city}"></td>
                     <td th:text="${trip.route.arrivalStation.city}"></td>
-                    <td th:text="${trip.departureDate + ' ' + #temporals.format(trip.departureTime, 'HH:mm')}"></td>
-                    <td th:text="${trip.departureDate + ' ' + #temporals.format(trip.departureTime.plusMinutes(trip.route.durationInMinutes), 'HH:mm')}"></td>
+                    <td th:text="${#temporals.format(trip.departure, 'yyyy-MM-dd HH:mm')}"></td>
+                    <td th:text="${#temporals.format(trip.arrival, 'yyyy-MM-dd HH:mm')}"></td>
                 </tr>
             </tbody>
         </table>

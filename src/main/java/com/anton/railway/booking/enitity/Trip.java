@@ -1,9 +1,7 @@
 package com.anton.railway.booking.enitity;
 
 import com.anton.railway.booking.enitity.enums.TripStatus;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,6 +10,8 @@ import java.time.LocalTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "trip")
 public class Trip {
