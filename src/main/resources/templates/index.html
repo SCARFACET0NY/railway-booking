@@ -9,9 +9,9 @@
     <title>Railway Booking</title>
 </head>
 <body>
-    <th:block th:include="header.html"/>
-    <th:block th:include="sub-header.html"/>
-    <th:block th:include="footer.html"/>
+    <div th:replace="header"></div>
+    <div th:replace="sub-header"></div>
+    <div th:replace="footer"></div>
 
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/1.12.9/umd/popper.min.js}"></script>
