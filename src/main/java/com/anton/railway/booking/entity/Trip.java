@@ -1,6 +1,6 @@
-package com.anton.railway.booking.enitity;
+package com.anton.railway.booking.entity;
 
-import com.anton.railway.booking.enitity.enums.TripStatus;
+import com.anton.railway.booking.entity.enums.TripStatus;
 import lombok.*;
 
 import javax.persistence.*;

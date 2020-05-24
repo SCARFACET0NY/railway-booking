@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/normalize.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/main.css}"/>
+    <title>Trip</title>
+</head>
+<body>
+    <div th:replace="header"></div>
+    <div th:replace="sub-header"></div>
+
+    <div class="container">
+        <th:block th:if="${trip != null}">
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="get" th:action="@{/setWagonClass}">
+                        <div class="form-group">
+                            <label for="wagon_class" th:text="'Wagon Class:'"></label>
+                            <select id="wagon_class" name="wagon_class" class="form-control">
+                                <option th:each="wagonClass : ${trip.wagonClasses}" th:value="${wagonClass}"
+                                        th:selected="${selectedWagonClass != null && selectedWagonClass == wagonClass}"
+                                        th:text="${wagonClass}"></option>
+                            </select>
+                        </div>
+                        <button class="btn btn-lg btn-info btn-block" type="submit">Choose Class</button>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <form th:if="${wagons != null}" method="get" th:action="@{/setWagon}">
+                        <div class="form-group">
+                            <label for="wagon_id" th:text="'Wagon Number:'"></label>
+                            <select id="wagon_id" name="wagon_id" class="form-control">
+                                <option th:each="wagon : ${wagons}" th:value="${wagon.wagonId}" th:text="${wagon.wagonNumber}"
+                                        th:selected="${selectedWagon != null && selectedWagon.wagonId == wagon.wagonId}"
+                                        ></option>
+                            </select>
+                        </div>
+                        <button class="btn btn-lg btn-info btn-block" type="submit">Choose Wagon</button>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <form th:if="${seats != null}" method="get" th:action="@{/setSeat}">
+                        <div class="form-group">
+                            <label for="seat_id" th:text="'Seat Number:'"></label>
+                            <select id="seat_id" name="seat_id" class="form-control">
+                                <option th:each="seat : ${seats}" th:value="${seat.seat.seatId}"
+                                        th:selected="${selectedSeat != null && selectedSeat.tripSeatId == seat.tripSeatId}"
+                                        th:text="${seat.seat.seatNumber}"></option>
+                            </select>
+                        </div>
+                        <button class="btn btn-lg btn-info btn-block" type="submit">Choose Seat</button>
+                    </form>
+                </div>
+            </div>
+            <div class="show-ticket">
+                <form method="get" th:if="${selectedSeat != null}" th:action="@{/showTicket}">
+                    <button type="submit" class="btn btn-lg btn-dark btn-block">Show Ticket</button>
+                </form>
+            </div>
+        </th:block>
+    </div>
+
+    <div th:replace="footer"></div>
+
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

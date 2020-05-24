@@ -1,11 +1,14 @@
 package com.anton.railway.booking.dto;
 
-import com.anton.railway.booking.enitity.Route;
-import com.anton.railway.booking.enitity.Train;
-import com.anton.railway.booking.enitity.enums.TripStatus;
+import com.anton.railway.booking.entity.Route;
+import com.anton.railway.booking.entity.Train;
+import com.anton.railway.booking.entity.enums.TripStatus;
+import com.anton.railway.booking.entity.enums.WagonClass;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,4 +22,6 @@ public class TripDto {
     private Train train;
     private LocalDateTime departure;
     private LocalDateTime arrival;
+    private BigDecimal minPrice;
+    private Set<WagonClass> wagonClasses;
 }

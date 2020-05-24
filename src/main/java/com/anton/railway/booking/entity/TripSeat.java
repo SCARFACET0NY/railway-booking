@@ -1,6 +1,6 @@
-package com.anton.railway.booking.enitity;
+package com.anton.railway.booking.entity;
 
-import com.anton.railway.booking.enitity.enums.SeatStatus;
+import com.anton.railway.booking.entity.enums.SeatStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

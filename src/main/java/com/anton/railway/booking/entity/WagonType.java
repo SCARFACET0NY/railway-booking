@@ -1,5 +1,6 @@
-package com.anton.railway.booking.enitity;
+package com.anton.railway.booking.entity;
 
+import com.anton.railway.booking.entity.enums.WagonClass;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,13 +12,16 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "seat_type")
-public class SeatType {
+@Table(name = "wagon_type")
+public class WagonType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long seatTypeId;
+    private Long wagonTypeId;
     @Column(name = "class")
-    private String seatClass;
+    @Enumerated(value = EnumType.STRING)
+    private WagonClass wagonClass;
+    @Column(name = "capacity")
+    private Integer capacity;
     @Column(name = "price_coefficient")
     private BigDecimal priceCoefficient;
 }

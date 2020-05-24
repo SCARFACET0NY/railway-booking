@@ -2,8 +2,8 @@ package com.anton.railway.booking.service.impl;
 
 import com.anton.railway.booking.converter.TripToTripDto;
 import com.anton.railway.booking.dto.TripDto;
-import com.anton.railway.booking.enitity.Trip;
-import com.anton.railway.booking.enitity.enums.TripStatus;
+import com.anton.railway.booking.entity.Trip;
+import com.anton.railway.booking.entity.enums.TripStatus;
 import com.anton.railway.booking.repository.TripRepository;
 import com.anton.railway.booking.service.TripService;
 import org.springframework.stereotype.Service;
@@ -49,6 +49,11 @@ public class TripServiceImpl implements TripService {
     @Override
     public void deleteById(Long id) {
         tripRepository.deleteById(id);
+    }
+
+    @Override
+    public TripDto findTripDtoById(Long id) {
+        return tripToTripDto.convert(findById(id));
     }
 
     @Override

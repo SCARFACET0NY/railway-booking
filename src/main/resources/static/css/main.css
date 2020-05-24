@@ -129,7 +129,7 @@ h2 {
     font-size: 20px;
 }
 
-.login .btn-info, .register .btn-info {
+.login .btn-info, .register .btn-info, .show-ticket .btn {
     margin-top: 2em;
 }
 

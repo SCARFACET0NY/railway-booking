@@ -1,4 +1,4 @@
-package com.anton.railway.booking.enitity.enums;
+package com.anton.railway.booking.entity.enums;
 
 public enum AccountStatus {
     ADMIN, CUSTOMER

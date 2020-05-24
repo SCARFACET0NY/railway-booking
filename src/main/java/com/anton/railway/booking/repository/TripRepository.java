@@ -1,7 +1,7 @@
 package com.anton.railway.booking.repository;
 
-import com.anton.railway.booking.enitity.Trip;
-import com.anton.railway.booking.enitity.enums.TripStatus;
+import com.anton.railway.booking.entity.Trip;
+import com.anton.railway.booking.entity.enums.TripStatus;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDate;

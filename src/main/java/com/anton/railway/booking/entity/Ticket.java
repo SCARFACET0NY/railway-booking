@@ -1,4 +1,4 @@
-package com.anton.railway.booking.enitity;
+package com.anton.railway.booking.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +19,6 @@ public class Ticket {
     @OneToOne
     @JoinColumn(name = "trip_seat_id")
     private TripSeat seat;
-    @Column(name = "quantity")
-    private Integer quantity;
     @Column(name = "price")
     private BigDecimal price;
     @ManyToOne()

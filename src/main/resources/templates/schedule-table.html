@@ -6,6 +6,8 @@
             <th>To</th>
             <th>Departure</th>
             <th>Arrival</th>
+            <th>Prices from</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -17,6 +19,13 @@
             <td th:text="${trip.route.arrivalStation.city}"></td>
             <td th:text="${#temporals.format(trip.departure, 'yyyy-MM-dd HH:mm')}"></td>
             <td th:text="${#temporals.format(trip.arrival, 'yyyy-MM-dd HH:mm')}"></td>
+            <td th:text="${trip.minPrice}"></td>
+            <td>
+                <form method="get" th:action="@{/setTrip}">
+                    <input type="hidden" name="trip_id" th:value="${trip.tripId}">
+                    <button class="btn btn-info" type="submit">Buy Ticket</button>
+                </form>
+            </td>
         </tr>
     </tbody>
 </table>

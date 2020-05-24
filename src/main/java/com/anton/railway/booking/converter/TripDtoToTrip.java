@@ -1,7 +1,7 @@
 package com.anton.railway.booking.converter;
 
 import com.anton.railway.booking.dto.TripDto;
-import com.anton.railway.booking.enitity.Trip;
+import com.anton.railway.booking.entity.Trip;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

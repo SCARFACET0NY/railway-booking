@@ -1,6 +1,5 @@
-package com.anton.railway.booking.enitity;
+package com.anton.railway.booking.entity;
 
-import com.anton.railway.booking.enitity.enums.SeatStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +17,6 @@ public class Seat {
     private Long seatId;
     @Column(name = "number")
     private String seatNumber;
-    @ManyToOne()
-    @JoinColumn(name = "seat_type_id")
-    private SeatType seatType;
     @ManyToOne()
     @JoinColumn(name = "wagon_id")
     private Wagon wagon;

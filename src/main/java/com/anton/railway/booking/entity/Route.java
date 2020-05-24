@@ -1,4 +1,4 @@
-package com.anton.railway.booking.enitity;
+package com.anton.railway.booking.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
