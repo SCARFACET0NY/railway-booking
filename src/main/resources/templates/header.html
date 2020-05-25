@@ -19,17 +19,17 @@
         <div class="btn-group btn-group-lg">
             <div class="btn-group">
                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                    <span th:text="'0.00 uah'"></span><br/>
+                    <span th:text="(${session.total}?:'0.00') + ' uah'"></span><br/>
                     <span th:text="(${session.cart?.size()}?:'0') + ' tickets'"></span>
                 </button>
                 <div class="dropdown-menu">
                     <th:block th:each="ticket : ${session.cart?.values()}">
-                        <span class="dropdown-item"
-                              th:text="${ticket.seat.trip.route.departureStation.city} + ' - ' +
-                              ${ticket.seat.trip.route.arrivalStation.city} + ' : ' + ${ticket.price} + 'uah'"></span>
+                        <span class="dropdown-item" th:text="${ticket.ticket.seat.trip.route.departureStation.city} +
+                            ' - ' + ${ticket.ticket.seat.trip.route.arrivalStation.city} + ' : ' +
+                            ${ticket.ticket.price} + 'uah'"></span>
                         <div class="dropdown-divider"></div>
                     </th:block>
-                    <span class="dropdown-item" th:text="'0.00 uah'"></span>
+                    <span class="dropdown-item" th:text="'Total: ' + (${session.total}?:'0.00') + ' uah'"></span>
                 </div>
             </div>
 

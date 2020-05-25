@@ -2,7 +2,6 @@ package com.anton.railway.booking.controller;
 
 import com.anton.railway.booking.converter.TripDtoToTrip;
 import com.anton.railway.booking.dto.TripDto;
-import com.anton.railway.booking.entity.Ticket;
 import com.anton.railway.booking.entity.TripSeat;
 import com.anton.railway.booking.entity.Wagon;
 import com.anton.railway.booking.entity.enums.WagonClass;
@@ -13,7 +12,6 @@ import com.anton.railway.booking.service.TripService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
@@ -48,12 +46,12 @@ public class TripController {
     @GetMapping("/setTrip")
     public String setTrip(@RequestParam(required = false, name = "trip_id") String tripId, HttpSession session) {
         session.setAttribute("trip", tripService.findTripDtoById(Long.parseLong(tripId)));
-        session.setAttribute("selectedWagonClass", null);
-        session.setAttribute("wagons", null);
-        session.setAttribute("selectedWagon", null);
-        session.setAttribute("seats", null);
-        session.setAttribute("selectedSeat", null);
-        session.setAttribute("ticket", null);
+        session.removeAttribute("selectedWagonClass");
+        session.removeAttribute("wagons");
+        session.removeAttribute("selectedWagon");
+        session.removeAttribute("seats");
+        session.removeAttribute("selectedSeat");
+        session.removeAttribute("ticket");
 
         return "redirect:trip";
     }

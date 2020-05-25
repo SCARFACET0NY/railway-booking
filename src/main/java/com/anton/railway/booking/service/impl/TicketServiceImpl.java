@@ -1,5 +1,7 @@
 package com.anton.railway.booking.service.impl;
 
+import com.anton.railway.booking.dto.TicketDto;
+import com.anton.railway.booking.dto.TripDto;
 import com.anton.railway.booking.entity.Ticket;
 import com.anton.railway.booking.entity.TripSeat;
 import com.anton.railway.booking.repository.TicketRepository;
@@ -53,5 +55,11 @@ public class TicketServiceImpl implements TicketService {
                 .setScale(2, RoundingMode.HALF_UP);
 
         return Ticket.builder().seat(tripSeat).price(price).build();
+    }
+
+    @Override
+    public TicketDto createTicketDto(Ticket ticket, TripDto tripDto) {
+        return TicketDto.builder()
+                .ticket(ticket).departure(tripDto.getDeparture()).arrival(tripDto.getArrival()).build();
     }
 }
