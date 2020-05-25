@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Table(name = "ticket")
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ticketId;
     @OneToOne
     @JoinColumn(name = "trip_seat_id")

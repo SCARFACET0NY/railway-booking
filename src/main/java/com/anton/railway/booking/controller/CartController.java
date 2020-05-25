@@ -1,10 +1,13 @@
 package com.anton.railway.booking.controller;
 
+import com.anton.railway.booking.auth.UserPrincipal;
 import com.anton.railway.booking.dto.TicketDto;
 import com.anton.railway.booking.dto.TripDto;
 import com.anton.railway.booking.entity.Ticket;
+import com.anton.railway.booking.entity.User;
 import com.anton.railway.booking.service.PaymentService;
 import com.anton.railway.booking.service.TicketService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,9 +70,12 @@ public class CartController {
 
     @PostMapping("/pay")
     public String pay(HttpSession session) {
-        Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
+        User user = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
+        Map<Long, TicketDto> cart = (Map<Long, TicketDto>) session.getAttribute("cart");
 
         if (!cart.isEmpty()) {
+            paymentService.save(paymentService.createPayment(user, cart));
+
             cart.clear();
             session.removeAttribute("cart");
             session.removeAttribute("total");
