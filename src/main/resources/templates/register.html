@@ -1,0 +1,78 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/normalize.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/main.css}"/>
+    <title th:text="'Register'"></title>
+</head>
+<body>
+    <div class="register">
+        <div class="container">
+            <h2 th:text="'Register'"></h2>
+            <form th:action="@{/register}" th:object="${user}" method="post" id="registerForm" >
+                <div class="form-group">
+                    <label for="first-name" th:text="'First Name:'"></label>
+                    <input type="text" id="first-name" class="form-control"
+                           placeholder="Enter First Name"
+                           required="required"
+                           th:field="*{firstName}">
+                </div>
+                <div class="form-group">
+                    <label for="last-name" th:text="'Last name:'"></label>
+                    <input type="text" id="last-name" class="form-control"
+                           placeholder="Enter Last Name"
+                           required="required"
+                           th:field="*{lastName}">
+                </div>
+                <div class="form-group">
+                    <label for="phone" th:text="'Phone:'"></label>
+                    <input type="tel" id="phone" class="form-control"
+                           placeholder="Format: 123-456-78-90"
+                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                           required="required"
+                           th:field="*{phone}">
+                </div>
+                <div class="form-group">
+                    <label for="email" th:text="'Email:'"></label>
+                    <input type="email" id="email" class="form-control"
+                           placeholder="Enter Email"
+                           required="required"
+                           th:field="*{email}">
+                </div>
+                <div class="form-group">
+                    <label for="card-number" th:text="'Card Number:'"></label>
+                    <input type="number" id="card-number" class="form-control"
+                           placeholder="Enter Card Number"
+                           min="1000000000" max="9999999999"
+                           required="required"
+                           th:field="*{cardNumber}">
+                </div>
+                <div class="form-group">
+                    <label for="username" th:text="'Username:'"></label>
+                    <input type="text" id="username" class="form-control"
+                           placeholder="Enter username"
+                           required="required"
+                           minlength="3"
+                           th:field="*{username}">
+                </div>
+                <div class="form-group">
+                    <label for="password" th:text="'Password:'"></label>
+                    <input type="password" id="password" class="form-control"
+                           placeholder="Enter password"
+                           required="required"
+                           minlength="5"
+                           th:field="*{password}">
+                </div>
+                <button type="submit" id="userRegister" class="btn btn-info btn-block" th:text="'Register'"></button>
+                <a class="btn btn-dark btn-block" th:href="@{/}" th:text="'Home'"></a>
+            </form>
+        </div>
+    </div>
+
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+</body>
+</html>
