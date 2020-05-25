@@ -1,5 +1,5 @@
-<table class="table table-striped table-dark" xmlns:th="http://www.thymeleaf.org" th:fragment="schedule-table">
-    <thead>
+<table class="table table-hover" xmlns:th="http://www.thymeleaf.org" th:fragment="schedule-table">
+    <thead class="bg-info text-dark">
         <tr>
             <th>Train Number</th>
             <th>From</th>
@@ -10,7 +10,7 @@
             <th>Action</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="bg-dark text-light">
         <!--/*@thymesVar id="trips" type="java.util.List"*/-->
         <tr th:each="trip : ${trips}">
             <!--/*@thymesVar id="trip" type="com.anton.railway.booking.dto.TripDto"*/-->

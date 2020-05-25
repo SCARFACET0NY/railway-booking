@@ -2,15 +2,18 @@ package com.anton.railway.booking.controller;
 
 import com.anton.railway.booking.converter.TripDtoToTrip;
 import com.anton.railway.booking.dto.TripDto;
+import com.anton.railway.booking.entity.Ticket;
 import com.anton.railway.booking.entity.TripSeat;
 import com.anton.railway.booking.entity.Wagon;
 import com.anton.railway.booking.entity.enums.WagonClass;
 import com.anton.railway.booking.repository.TripSeatRepository;
+import com.anton.railway.booking.service.TicketService;
 import com.anton.railway.booking.service.TripSeatService;
 import com.anton.railway.booking.service.TripService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
@@ -21,10 +24,12 @@ import java.util.List;
 public class TripController {
     private final TripService tripService;
     private final TripSeatService tripSeatService;
+    private final TicketService ticketService;
 
-    public TripController(TripService tripService, TripSeatRepository tripSeatRepository, TripDtoToTrip tripDtoToTrip, TripSeatService tripSeatService) {
+    public TripController(TripService tripService, TripSeatRepository tripSeatRepository, TripDtoToTrip tripDtoToTrip, TripSeatService tripSeatService, TicketService ticketService) {
         this.tripService = tripService;
         this.tripSeatService = tripSeatService;
+        this.ticketService = ticketService;
     }
 
     @GetMapping("/trip")
@@ -35,6 +40,7 @@ public class TripController {
         model.addAttribute("selectedWagon", session.getAttribute("selectedWagon"));
         model.addAttribute("seats", session.getAttribute("seats"));
         model.addAttribute("selectedSeat", session.getAttribute("selectedSeat"));
+        model.addAttribute("ticket", session.getAttribute("ticket"));
 
         return "trip";
     }
@@ -44,9 +50,10 @@ public class TripController {
         session.setAttribute("trip", tripService.findTripDtoById(Long.parseLong(tripId)));
         session.setAttribute("selectedWagonClass", null);
         session.setAttribute("wagons", null);
-        session.setAttribute("wagon", null);
+        session.setAttribute("selectedWagon", null);
         session.setAttribute("seats", null);
-        session.setAttribute("seat", null);
+        session.setAttribute("selectedSeat", null);
+        session.setAttribute("ticket", null);
 
         return "redirect:trip";
     }
@@ -77,7 +84,8 @@ public class TripController {
             if (wagon.getWagonId().equals(id)) {
                 seats.addAll(tripSeatService.findWagonFreeSeatForTrip(wagon, tripDto));
                 session.setAttribute("selectedWagon", wagon);
-            };
+            }
+            ;
         });
 
         session.setAttribute("seats", seats);
@@ -93,6 +101,14 @@ public class TripController {
         seats.forEach(seat -> {
             if (seat.getTripSeatId().equals(id)) session.setAttribute("selectedSeat", seat);
         });
+
+        return "redirect:trip";
+    }
+
+    @GetMapping("/showTicket")
+    public String showTicket(HttpSession session) {
+        TripSeat tripSeat = (TripSeat) session.getAttribute("selectedSeat");
+        session.setAttribute("ticket", ticketService.createTicket(tripSeat));
 
         return "redirect:trip";
     }

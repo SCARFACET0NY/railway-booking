@@ -120,7 +120,7 @@ h2 {
     margin-bottom: 0;
 }
 
-.login, .register, .error {
+.login, .register, .error, .ticket {
     margin-top: 2em;
 }
 
@@ -148,12 +148,12 @@ h2 {
     font-size: 1em;
 }
 
-.cart .table th, .cart .table td {
+.table th, .table td {
     vertical-align: middle;
     text-align: center;
 }
 
-.cart .table td form {
+.cart .table td form, .ticket .table td form {
     margin-block-end: 0;
 }
 
