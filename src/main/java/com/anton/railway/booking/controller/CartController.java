@@ -5,6 +5,7 @@ import com.anton.railway.booking.dto.TicketDto;
 import com.anton.railway.booking.dto.TripDto;
 import com.anton.railway.booking.entity.Ticket;
 import com.anton.railway.booking.entity.User;
+import com.anton.railway.booking.service.EmailService;
 import com.anton.railway.booking.service.PaymentService;
 import com.anton.railway.booking.service.TicketService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,15 +15,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
 public class CartController {
+    private final EmailService emailService;
     private final PaymentService paymentService;
     private final TicketService ticketService;
 
-    public CartController(PaymentService paymentService, TicketService ticketService) {
+    public CartController(EmailService emailService, PaymentService paymentService, TicketService ticketService) {
+        this.emailService = emailService;
         this.paymentService = paymentService;
         this.ticketService = ticketService;
     }
@@ -72,9 +76,12 @@ public class CartController {
     public String pay(HttpSession session) {
         User user = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
         Map<Long, TicketDto> cart = (Map<Long, TicketDto>) session.getAttribute("cart");
+        BigDecimal total = (BigDecimal) session.getAttribute("total");
 
         if (!cart.isEmpty()) {
             paymentService.save(paymentService.createPayment(user, cart));
+            emailService.sendEmail(user.getEmail(), "Tickets from Railway Booking",
+                    emailService.createEmailText(user, cart, total));
 
             cart.clear();
             session.removeAttribute("cart");
