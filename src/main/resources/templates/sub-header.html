@@ -9,8 +9,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/searchPage}"
-               th:classappend="${#httpServletRequest.getRequestURI().equals('/searchPage') ? 'text-light' : ''}">
+            <a class="nav-link" th:href="@{/}"
+               th:classappend="${#httpServletRequest.getRequestURI().equals('/') ? 'text-light' : ''}">
                 <img class="icon" th:src="@{/img/search_icon.png}"/>
                 <span th:text="#{booking.search}"></span>
             </a>

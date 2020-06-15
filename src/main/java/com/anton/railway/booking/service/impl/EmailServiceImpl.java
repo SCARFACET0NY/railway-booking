@@ -3,7 +3,6 @@ package com.anton.railway.booking.service.impl;
 import com.anton.railway.booking.dto.TicketDto;
 import com.anton.railway.booking.entity.User;
 import com.anton.railway.booking.service.EmailService;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;

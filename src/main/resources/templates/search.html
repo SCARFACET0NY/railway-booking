@@ -1,51 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" type="text/css" th:href="@{css/normalize.css}"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{css/main.css}"/>
-    <title>Search</title>
-</head>
-<body>
-    <div th:replace="header"></div>
-    <div th:replace="sub-header"></div>
-
-    <div class="search">
-        <div class="container">
-            <h2 th:text="#{booking.search.trains}"></h2>
-            <form th:method="get" th:action="@{/search}">
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="departure">Departure City:</label>
-                        <input id="departure" type="text" class="form-control" name="departure">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="arrival">Arrival City:</label>
-                        <input id="arrival" type="text" class="form-control" name="arrival">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="date">Date:</label>
-                        <input id="date" type="date" class="form-control" name="date">
-                    </div>
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-lg btn-info form-control" th:text="#{booking.search}"></button>
-                    </div>
+<div class="search" xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <h2 th:text="#{booking.search.trains}"></h2>
+        <form th:method="get" th:action="@{/search}">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="departure">Departure City:</label>
+                    <input id="departure" type="text" class="form-control" name="departure">
                 </div>
-            </form>
-        </div>
+                <div class="col-md-3">
+                    <label for="arrival">Arrival City:</label>
+                    <input id="arrival" type="text" class="form-control" name="arrival">
+                </div>
+                <div class="col-md-3">
+                    <label for="date">Date:</label>
+                    <input id="date" type="date" class="form-control" name="date">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-lg btn-info form-control" th:text="#{booking.search}"></button>
+                </div>
+            </div>
+        </form>
     </div>
-
-    <div class="container" th:if="${not #lists.isEmpty(trips)}">
-        <h2 th:text="'Trains'"></h2>
-        <div th:replace="schedule-table"></div>
-    </div>
-
-    <div th:replace="footer"></div>
-
-    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/1.12.9/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
-</body>
-</html>
+</div>

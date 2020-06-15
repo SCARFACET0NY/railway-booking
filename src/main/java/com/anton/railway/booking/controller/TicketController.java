@@ -19,12 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class TripController {
+public class TicketController {
     private final TripService tripService;
     private final TripSeatService tripSeatService;
     private final TicketService ticketService;
 
-    public TripController(TripService tripService, TripSeatRepository tripSeatRepository, TripDtoToTrip tripDtoToTrip, TripSeatService tripSeatService, TicketService ticketService) {
+    public TicketController(TripService tripService, TripSeatRepository tripSeatRepository, TripDtoToTrip tripDtoToTrip, TripSeatService tripSeatService, TicketService ticketService) {
         this.tripService = tripService;
         this.tripSeatService = tripSeatService;
         this.ticketService = ticketService;
@@ -80,7 +80,7 @@ public class TripController {
 
         wagons.forEach(wagon -> {
             if (wagon.getWagonId().equals(id)) {
-                seats.addAll(tripSeatService.findWagonFreeSeatForTrip(wagon, tripDto));
+                seats.addAll(tripSeatService.findWagonFreeSeatsForTrip(wagon, tripDto));
                 session.setAttribute("selectedWagon", wagon);
             }
             ;

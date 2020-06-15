@@ -17,10 +17,10 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long routeId;
     @OneToOne
-    @JoinColumn(name = "departure_station")
+    @JoinColumn(name = "departure_station_id")
     private Station departureStation;
     @OneToOne
-    @JoinColumn(name = "arrival_station")
+    @JoinColumn(name = "arrival_station_id")
     private Station arrivalStation;
     @Column(name = "duration_in_minutes")
     private Integer durationInMinutes;

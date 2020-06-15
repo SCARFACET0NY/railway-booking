@@ -16,9 +16,9 @@ public class SearchController {
         this.tripService = tripService;
     }
 
-    @GetMapping("/searchPage")
+    @GetMapping("/")
     public String getSearchPage() {
-        return "search";
+        return "index";
     }
 
     @GetMapping("/search")
@@ -30,6 +30,6 @@ public class SearchController {
             model.addAttribute("trips", tripService.searchTrips(departure, arrival, LocalDate.parse(date)));
         }
 
-        return "search";
+        return "index";
     }
 }

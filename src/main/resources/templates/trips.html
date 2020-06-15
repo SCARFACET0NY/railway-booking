@@ -1,0 +1,4 @@
+<div class="container" th:if="${not #lists.isEmpty(trips)}" xmlns:th="http://www.thymeleaf.org">
+    <h2 th:text="'Trains'"></h2>
+    <div th:replace="schedule-table"></div>
+</div>

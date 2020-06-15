@@ -51,7 +51,7 @@ public class TripSeatServiceImpl implements TripSeatService {
     }
 
     @Override
-    public List<TripSeat> findWagonFreeSeatForTrip(Wagon wagon, TripDto tripDto) {
+    public List<TripSeat> findWagonFreeSeatsForTrip(Wagon wagon, TripDto tripDto) {
         return tripSeatRepository.findAllByTripAndSeatWagonAndSeatStatus(
                 tripDtoToTrip.convert(tripDto), wagon, SeatStatus.FREE);
     }
