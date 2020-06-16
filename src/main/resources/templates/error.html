@@ -1,0 +1,25 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/normalize.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/main.css}"/>
+    <title>Error</title>
+</head>
+<body>
+    <div class="error">
+        <div class="container">
+            <div class="alert alert-danger">
+                <h2>Error</h2>
+                <p th:text="${error}"></p>
+            </div>
+            <a class="btn btn-info btn-block" th:href="@{/}">Home</a>
+        </div>
+    </div>
+
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

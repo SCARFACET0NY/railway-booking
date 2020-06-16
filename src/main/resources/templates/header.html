@@ -37,6 +37,8 @@
                 <a th:href="@{/cart}" class="nav-link text-light" th:text="'Checkout'"></a>
             </button>
         </div>
+        <a type="button" class="btn btn-light btn-lg" th:href="@{/admin}" sec:authorize="hasAuthority('ROLE_ADMIN')"
+           th:text="'Admin'"></a>
         <a type="button" class="btn btn-light btn-lg" th:href="@{/login}" sec:authorize="isAnonymous()"
            th:text="#{booking.login}"></a>
         <a type="button" class="btn btn-light btn-lg" th:href="@{/logout}" sec:authorize="isAuthenticated()"

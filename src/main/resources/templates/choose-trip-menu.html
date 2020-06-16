@@ -1,0 +1,29 @@
+<div class="container" xmlns:th="http://www.thymeleaf.org">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="get" th:action="@{/chooseTripDate}">
+                <div class="form-group">
+                    <label for="date">Choose Trip Date:</label>
+                    <input id="date" type="date" class="form-control" name="date" th:value="${session.date}">
+                </div>
+                <button class="btn btn-lg btn-info btn-block" type="submit">Choose Date</button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <form method="get" th:action="@{/chooseTrip}">
+                <div class="form-group">
+                    <label for="trip_id">Choose Trip:</label>
+                    <select id="trip_id" name="trip_id" class="form-control">
+                        <option th:each="trip : ${session.trips}" th:value="${trip.tripId}"
+                                th:text="'Train №' + ${trip.train.trainNumber + ' ' + trip.route.departureStation.city +
+                                ' - ' + trip.route.arrivalStation.city + ': ' + trip.departureTime}"
+                                th:selected="${session.selectedTrip != null && session.selectedTrip.tripId == trip.tripId}">
+                        </option>
+                    </select>
+                </div>
+                <button class="btn btn-lg btn-info btn-block" type="submit">Choose Trip</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -3,9 +3,12 @@ package com.anton.railway.booking.service.impl;
 import com.anton.railway.booking.dto.TicketDto;
 import com.anton.railway.booking.dto.TripDto;
 import com.anton.railway.booking.entity.Ticket;
+import com.anton.railway.booking.entity.Trip;
 import com.anton.railway.booking.entity.TripSeat;
 import com.anton.railway.booking.repository.TicketRepository;
 import com.anton.railway.booking.service.TicketService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,6 +18,7 @@ import java.util.List;
 
 @Service
 public class TicketServiceImpl implements TicketService {
+    public static final Integer ROWS_PER_PAGE = 2;
     private final TicketRepository ticketRepository;
 
     public TicketServiceImpl(TicketRepository ticketRepository) {
@@ -61,5 +65,10 @@ public class TicketServiceImpl implements TicketService {
     public TicketDto createTicketDto(Ticket ticket, TripDto tripDto) {
         return TicketDto.builder()
                 .ticket(ticket).departure(tripDto.getDeparture()).arrival(tripDto.getArrival()).build();
+    }
+
+    @Override
+    public Page<Ticket> getTicketsPageForTrip(Trip trip, Integer pageNumber) {
+        return ticketRepository.findAllBySeatTrip(trip, PageRequest.of(pageNumber, ROWS_PER_PAGE));
     }
 }

@@ -1,0 +1,47 @@
+<td colspan="9" xmlns:th="http://www.thymeleaf.org">
+    <div class="row">
+        <div class="col-md-3">
+            <form method="post" action="/admin/chooseWagonClass">
+                <input type="hidden" name="index" value="${loop.index}">
+                <div class="form-group">
+                    <label for="wagon_class">Wagon Class:</label>
+                    <select id="wagon_class" name="wagon_class" class="form-control">
+                        <option th:each="wagonClass : ${session.wagonClasses}" th:text="${wagonClass}">
+                        </option>
+                    </select>
+                </div>
+                <button class="btn btn-lg btn-info btn-block" type="submit">Choose Class</button>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <form th:if="${session.wagons}" method="post" th:action="@{/chooseWagon}">
+                <div class="form-group">
+                    <label for="wagon_id">Wagon Number:</label>
+                    <select id="wagon_id" name="wagon_id" class="form-control">
+                        <option></option>
+                    </select>
+                </div>
+                <button class="btn btn-lg btn-info btn-block" type="submit">Choose Wagon</button>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <form th:if="${session.seats}" method="post" th:action="@{/chooseSeat}">
+                <input type="hidden" name="ticket_id" value="${ticket.ticket.ticketId}">
+                <input type="hidden" name="old_wagon_id" value="${ticket.wagon.wagonId}">
+                <input type="hidden" name="old_seat_id" value="${ticket.tripSeat.tripSeatId}">
+                <div class="form-group">
+                    <label for="seat_id">Seat Number:</label>
+                    <select id="seat_id" name="seat_id" class="form-control">
+                            <option></option>
+                    </select>
+                </div>
+                <button class="btn btn-lg btn-info btn-block" type="submit">Choose Seat</button>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <form method="get" th:action="@{/cancelSeatChange}">
+                <button class="btn btn-lg btn-info btn-block cancel" type="submit">Cancel</button>
+            </form>
+        </div>
+    </div>
+</td>

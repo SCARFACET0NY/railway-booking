@@ -4,13 +4,16 @@ import com.anton.railway.booking.converter.TripToTripDto;
 import com.anton.railway.booking.dto.TripDto;
 import com.anton.railway.booking.entity.Trip;
 import com.anton.railway.booking.entity.enums.TripStatus;
+import com.anton.railway.booking.entity.enums.WagonClass;
 import com.anton.railway.booking.repository.TripRepository;
 import com.anton.railway.booking.service.TripService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,6 +66,11 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
+    public List<Trip> findScheduledTripsForDate(LocalDate date) {
+        return tripRepository.findAllByTripStatusAndAndDepartureDate(TripStatus.SCHEDULED, date);
+    }
+
+    @Override
     public List<TripDto> searchTrips(String departureCity, String arrivalCity) {
         return tripRepository.findAllByRouteDepartureStationCityAndRouteArrivalStationCity(departureCity, arrivalCity)
                 .stream().map(tripToTripDto::convert).collect(Collectors.toList());
@@ -73,5 +81,13 @@ public class TripServiceImpl implements TripService {
         return tripRepository.findAllByRouteDepartureStationCityAndRouteArrivalStationCityAndDepartureDate(
                 departureCity, arrivalCity, date).stream()
                 .map(tripToTripDto::convert).collect(Collectors.toList());
+    }
+
+    @Override
+    public Set<WagonClass> getWagonClassesForTrip(Trip trip) {
+        Set<WagonClass> wagonClasses = new HashSet<>();
+        trip.getTrain().getWagons().forEach(wagon -> wagonClasses.add(wagon.getWagonType().getWagonClass()));
+
+        return wagonClasses;
     }
 }

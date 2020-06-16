@@ -1,0 +1,46 @@
+<div th:if="${tickets != null}" class="container-fluid ticket" xmlns:th="http://www.thymeleaf.org">
+    <table class="table table-hover">
+        <thead class="bg-info text-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Wagon Class</th>
+            <th>Wagon Number</th>
+            <th>Seat Number</th>
+            <th>Price</th>
+            <th>Remove</th>
+            <th>Change</th>
+        </tr>
+        </thead>
+        <tbody class="bg-dark text-light">
+            <th:block th:each="ticket, index : ${tickets}">
+                <tr>
+                    <!--/*@thymesVar id="ticket" type="com.anton.railway.booking.entity.Ticket"*/-->
+                    <td th:text="${ticket.payment.user.firstName}"></td>
+                    <td th:text="${ticket.payment.user.lastName}"></td>
+                    <td th:text="${ticket.payment.user.email}"></td>
+                    <td th:text="${ticket.seat.seat.wagon.wagonType.wagonClass}"></td>
+                    <td th:text="${ticket.seat.seat.wagon.wagonNumber}"></td>
+                    <td th:text="${ticket.seat.seat.seatNumber}"></td>
+                    <td th:text="${ticket.price}"></td>
+                    <td>
+                        <form method="post" th:action="@{admin/cancelTicket}">
+                            <input type="hidden" name="ticket_id" value="${ticket.ticket.ticketId}">
+                            <button type="submit" class="btn btn-info">Cancel Ticket</button>
+                        </form>
+                    </td>
+                    <td>
+                        <a type="submit" role="button" class="btn btn-info"
+                           data-toggle="collapse" th:href="@{'#collapse' + ${index.index}}">Change Place</a>
+                    </td>
+                </tr>
+                <tr th:id="'collapse' + ${index.index}" class="collapse ${loop.index == sessionScope.index ? 'show' : ''}">
+                    <div th:replace="place-change-dropdown"></div>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+
+    <div th:replace="pagination"></div>
+</div>
