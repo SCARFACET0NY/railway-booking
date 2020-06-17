@@ -2,6 +2,7 @@ package com.anton.railway.booking.service.impl;
 
 import com.anton.railway.booking.converter.TripDtoToTrip;
 import com.anton.railway.booking.dto.TripDto;
+import com.anton.railway.booking.entity.Trip;
 import com.anton.railway.booking.entity.TripSeat;
 import com.anton.railway.booking.entity.Wagon;
 import com.anton.railway.booking.entity.enums.SeatStatus;
@@ -54,5 +55,10 @@ public class TripSeatServiceImpl implements TripSeatService {
     public List<TripSeat> findWagonFreeSeatsForTrip(Wagon wagon, TripDto tripDto) {
         return tripSeatRepository.findAllByTripAndSeatWagonAndSeatStatus(
                 tripDtoToTrip.convert(tripDto), wagon, SeatStatus.FREE);
+    }
+
+    @Override
+    public List<TripSeat> findWagonFreeSeatsForTrip(Wagon wagon, Trip trip) {
+        return tripSeatRepository.findAllByTripAndSeatWagonAndSeatStatus(trip, wagon, SeatStatus.FREE);
     }
 }

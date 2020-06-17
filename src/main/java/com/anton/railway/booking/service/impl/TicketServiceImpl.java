@@ -5,11 +5,18 @@ import com.anton.railway.booking.dto.TripDto;
 import com.anton.railway.booking.entity.Ticket;
 import com.anton.railway.booking.entity.Trip;
 import com.anton.railway.booking.entity.TripSeat;
+import com.anton.railway.booking.entity.WagonType;
+import com.anton.railway.booking.entity.enums.SeatStatus;
+import com.anton.railway.booking.entity.enums.WagonClass;
+import com.anton.railway.booking.repository.PaymentRepository;
 import com.anton.railway.booking.repository.TicketRepository;
+import com.anton.railway.booking.repository.TripSeatRepository;
+import com.anton.railway.booking.service.PaymentService;
 import com.anton.railway.booking.service.TicketService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,10 +26,14 @@ import java.util.List;
 @Service
 public class TicketServiceImpl implements TicketService {
     public static final Integer ROWS_PER_PAGE = 2;
+    private final PaymentRepository paymentRepository;
     private final TicketRepository ticketRepository;
+    private final TripSeatRepository tripSeatRepository;
 
-    public TicketServiceImpl(TicketRepository ticketRepository) {
+    public TicketServiceImpl(PaymentRepository paymentRepository, TicketRepository ticketRepository, TripSeatRepository tripSeatRepository) {
+        this.paymentRepository = paymentRepository;
         this.ticketRepository = ticketRepository;
+        this.tripSeatRepository = tripSeatRepository;
     }
 
     @Override
@@ -65,6 +76,34 @@ public class TicketServiceImpl implements TicketService {
     public TicketDto createTicketDto(Ticket ticket, TripDto tripDto) {
         return TicketDto.builder()
                 .ticket(ticket).departure(tripDto.getDeparture()).arrival(tripDto.getArrival()).build();
+    }
+
+    @Override
+    @Transactional
+    public Ticket changeAndSaveTicket(Ticket ticket, TripSeat tripSeat) {
+        WagonType oldWagonType = ticket.getSeat().getSeat().getWagon().getWagonType();
+        WagonType newWagonType = tripSeat.getSeat().getWagon().getWagonType();
+
+        if (!oldWagonType.equals(newWagonType)) {
+            BigDecimal oldPrice = ticket.getPrice();
+            BigDecimal newPrice = ticket.getSeat().getTrip().getRoute().getBasePrice()
+                    .multiply(newWagonType.getPriceCoefficient())
+                    .setScale(2, RoundingMode.HALF_UP);
+            BigDecimal difference = newPrice.subtract(oldPrice);
+            ticket.getPayment().setTotal(ticket.getPayment().getTotal().add(difference));
+            ticket.setPrice(newPrice);
+
+            paymentRepository.save(ticket.getPayment());
+        }
+
+        ticket.getSeat().setSeatStatus(SeatStatus.FREE);
+        tripSeatRepository.save(ticket.getSeat());
+
+        tripSeat.setSeatStatus(SeatStatus.OCCUPIED);
+        ticket.setSeat(tripSeat);
+        tripSeatRepository.save(tripSeat);
+
+        return ticketRepository.save(ticket);
     }
 
     @Override

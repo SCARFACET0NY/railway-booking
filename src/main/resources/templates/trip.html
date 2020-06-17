@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label for="seat_id" th:text="'Seat Number:'"></label>
                         <select id="seat_id" name="seat_id" class="form-control">
-                            <option th:each="seat : ${seats}" th:value="${seat.seat.seatId}"
+                            <option th:each="seat : ${seats}" th:value="${seat.tripSeatId}"
                                     th:selected="${selectedSeat != null && selectedSeat.tripSeatId == seat.tripSeatId}"
                                     th:text="${seat.seat.seatNumber}"></option>
                         </select>

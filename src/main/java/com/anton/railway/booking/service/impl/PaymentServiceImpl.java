@@ -47,15 +47,6 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     @Transactional
     public Payment save(Payment payment) {
-        payment.getTickets().forEach(ticket -> {
-            ticket.setPayment(payment);
-            ticketRepository.save(ticket);
-
-            TripSeat tripSeat = tripSeatRepository.findById(ticket.getSeat().getTripSeatId()).orElse(null);
-            tripSeat.setSeatStatus(SeatStatus.OCCUPIED);
-            tripSeatRepository.save(tripSeat);
-        });
-
         return paymentRepository.save(payment);
     }
 
@@ -86,5 +77,19 @@ public class PaymentServiceImpl implements PaymentService {
                 .total(getCartTotal(cart))
                 .tickets(tickets)
                 .user(user).build();
+    }
+
+    @Override
+    public Payment savePaymentWithTickets(Payment payment) {
+        payment.getTickets().forEach(ticket -> {
+            ticket.setPayment(payment);
+            ticketRepository.save(ticket);
+
+            TripSeat tripSeat = tripSeatRepository.findById(ticket.getSeat().getTripSeatId()).orElse(null);
+            tripSeat.setSeatStatus(SeatStatus.OCCUPIED);
+            tripSeatRepository.save(tripSeat);
+        });
+
+        return paymentRepository.save(payment);
     }
 }

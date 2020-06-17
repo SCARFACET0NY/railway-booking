@@ -79,7 +79,7 @@ public class CartController {
         BigDecimal total = (BigDecimal) session.getAttribute("total");
 
         if (!cart.isEmpty()) {
-            paymentService.save(paymentService.createPayment(user, cart));
+            paymentService.savePaymentWithTickets(paymentService.createPayment(user, cart));
             emailService.sendEmail(user.getEmail(), "Tickets from Railway Booking",
                     emailService.createEmailText(user, cart, total));
 

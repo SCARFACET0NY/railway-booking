@@ -11,4 +11,6 @@ public interface PaymentService extends CrudService<Payment, Long> {
     BigDecimal getCartTotal(Map<Long, TicketDto> cart);
 
     Payment createPayment(User user, Map<Long, TicketDto> cart);
+
+    Payment savePaymentWithTickets(Payment payment);
 }

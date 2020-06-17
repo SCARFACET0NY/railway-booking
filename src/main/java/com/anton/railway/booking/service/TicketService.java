@@ -12,5 +12,7 @@ public interface TicketService extends CrudService<Ticket, Long> {
 
     TicketDto createTicketDto(Ticket ticket, TripDto tripDto);
 
+    Ticket changeAndSaveTicket(Ticket ticket, TripSeat tripSeat);
+
     Page<Ticket> getTicketsPageForTrip(Trip trip, Integer pageNumber);
 }
