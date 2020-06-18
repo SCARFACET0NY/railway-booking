@@ -5,6 +5,8 @@ import com.anton.railway.booking.dto.TripDto;
 import com.anton.railway.booking.entity.Trip;
 import com.anton.railway.booking.entity.enums.TripStatus;
 import com.anton.railway.booking.entity.enums.WagonClass;
+import com.anton.railway.booking.exception.PaymentException;
+import com.anton.railway.booking.exception.TripException;
 import com.anton.railway.booking.repository.TripRepository;
 import com.anton.railway.booking.service.TripService;
 import org.springframework.stereotype.Service;
@@ -36,7 +38,7 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public Trip findById(Long id) {
-        return tripRepository.findById(id).orElse(null);
+        return tripRepository.findById(id).orElseThrow(() -> new TripException("Trip not found"));
     }
 
     @Override

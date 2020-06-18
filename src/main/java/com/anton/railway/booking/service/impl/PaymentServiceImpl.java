@@ -6,6 +6,8 @@ import com.anton.railway.booking.entity.Ticket;
 import com.anton.railway.booking.entity.TripSeat;
 import com.anton.railway.booking.entity.User;
 import com.anton.railway.booking.entity.enums.SeatStatus;
+import com.anton.railway.booking.exception.PaymentException;
+import com.anton.railway.booking.exception.TripSeatException;
 import com.anton.railway.booking.repository.PaymentRepository;
 import com.anton.railway.booking.repository.TicketRepository;
 import com.anton.railway.booking.repository.TripSeatRepository;
@@ -41,7 +43,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment findById(Long id) {
-        return paymentRepository.findById(id).orElse(null);
+        return paymentRepository.findById(id).orElseThrow(() -> new PaymentException("Payment not found"));
     }
 
     @Override
@@ -85,7 +87,8 @@ public class PaymentServiceImpl implements PaymentService {
             ticket.setPayment(payment);
             ticketRepository.save(ticket);
 
-            TripSeat tripSeat = tripSeatRepository.findById(ticket.getSeat().getTripSeatId()).orElse(null);
+            TripSeat tripSeat = tripSeatRepository.findById(ticket.getSeat().getTripSeatId())
+                    .orElseThrow(() -> new TripSeatException("TripSeat not found"));
             tripSeat.setSeatStatus(SeatStatus.OCCUPIED);
             tripSeatRepository.save(tripSeat);
         });

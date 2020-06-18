@@ -2,6 +2,8 @@ package com.anton.railway.booking.service.impl;
 
 import com.anton.railway.booking.auth.UserPrincipal;
 import com.anton.railway.booking.entity.User;
+import com.anton.railway.booking.exception.PaymentException;
+import com.anton.railway.booking.exception.UserException;
 import com.anton.railway.booking.repository.UserRepository;
 import com.anton.railway.booking.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(id).orElseThrow(() -> new UserException("User not found"));
     }
 
     @Override

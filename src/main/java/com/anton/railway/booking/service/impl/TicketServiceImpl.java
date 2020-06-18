@@ -7,11 +7,11 @@ import com.anton.railway.booking.entity.Trip;
 import com.anton.railway.booking.entity.TripSeat;
 import com.anton.railway.booking.entity.WagonType;
 import com.anton.railway.booking.entity.enums.SeatStatus;
-import com.anton.railway.booking.entity.enums.WagonClass;
+import com.anton.railway.booking.exception.PaymentException;
+import com.anton.railway.booking.exception.TicketException;
 import com.anton.railway.booking.repository.PaymentRepository;
 import com.anton.railway.booking.repository.TicketRepository;
 import com.anton.railway.booking.repository.TripSeatRepository;
-import com.anton.railway.booking.service.PaymentService;
 import com.anton.railway.booking.service.TicketService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,7 +45,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket findById(Long id) {
-        return ticketRepository.findById(id).orElse(null);
+        return ticketRepository.findById(id).orElseThrow(() -> new TicketException("Ticket not found"));
     }
 
     @Override
