@@ -1,6 +1,7 @@
 package com.anton.railway.booking.controller;
 
 import com.anton.railway.booking.converter.TripDtoToTrip;
+import com.anton.railway.booking.dto.TicketDto;
 import com.anton.railway.booking.dto.TripDto;
 import com.anton.railway.booking.entity.TripSeat;
 import com.anton.railway.booking.entity.Wagon;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class TicketController {
@@ -66,21 +68,20 @@ public class TicketController {
     }
 
     @GetMapping("/setWagon")
-    public String setWagon(@RequestParam("wagon_id") String wagonId, HttpSession session) {
-        Long id = Long.parseLong(wagonId);
+    public String setWagon(@RequestParam("wagon_id") Long wagonId, HttpSession session) {
         TripDto tripDto = (TripDto) session.getAttribute("trip");
         List<Wagon> wagons = (List<Wagon>) session.getAttribute("wagons");
-        List<TripSeat> seats = new ArrayList<>();
+        Map<Long, TicketDto> cart = (Map<Long, TicketDto>) session.getAttribute("cart");
 
         wagons.forEach(wagon -> {
-            if (wagon.getWagonId().equals(id)) {
-                seats.addAll(tripSeatService.findWagonFreeSeatsForTrip(wagon, tripDto));
-                session.setAttribute("selectedWagon", wagon);
-            }
-            ;
-        });
+            if (wagon.getWagonId().equals(wagonId)) {
+                List<TripSeat> seats = tripSeatService.findWagonFreeSeatsForTrip(wagon, tripDto);
+                if (cart != null) seats.removeIf(seat -> cart.containsKey(seat.getTripSeatId()));
 
-        session.setAttribute("seats", seats);
+                session.setAttribute("selectedWagon", wagon);
+                session.setAttribute("seats", seats);
+            }
+        });
 
         return "redirect:trip";
     }
