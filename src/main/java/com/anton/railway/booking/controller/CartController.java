@@ -40,21 +40,14 @@ public class CartController {
     public String addTicket(HttpSession session) {
         Map<Long, TicketDto> cart = (Map<Long, TicketDto>) session.getAttribute("cart");
         if (cart == null) cart = new HashMap<>();
-
-        TicketDto ticketDto = ticketService.createTicketDto(
-                (Ticket) session.getAttribute("ticket"),
-                (TripDto) session.getAttribute("trip"));
+        Ticket ticket = (Ticket) session.getAttribute("ticket");
+        TripDto tripDto = (TripDto) session.getAttribute("trip");
+        TicketDto ticketDto = ticketService.createTicketDto(ticket, tripDto);
 
         cart.put(ticketDto.getTicket().getSeat().getTripSeatId(), ticketDto);
         session.setAttribute("cart", cart);
         session.setAttribute("total", paymentService.getCartTotal(cart));
-
-        session.removeAttribute("selectedWagonClass");
-        session.removeAttribute("wagons");
-        session.removeAttribute("selectedWagon");
-        session.removeAttribute("seats");
-        session.removeAttribute("selectedSeat");
-        session.removeAttribute("ticket");
+        session.setAttribute("trip", tripDto);
 
         return "redirect:trip";
     }

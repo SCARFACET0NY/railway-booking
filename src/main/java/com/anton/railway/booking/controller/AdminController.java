@@ -117,11 +117,7 @@ public class AdminController {
             if (seat.getTripSeatId().equals(seatId)) ticketService.changeAndSaveTicket(ticket, seat);
         });
 
-        session.setAttribute("index", null);
-        session.setAttribute("selectedWagonClass", null);
-        session.setAttribute("selectedWagon", null);
-        session.setAttribute("wagons", null);
-        session.setAttribute("seats", null);
+        session.removeAttribute("index");
 
         return "redirect:admin";
     }
@@ -129,11 +125,7 @@ public class AdminController {
     @GetMapping("/cancelSeatChange")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String cancelSeatChange(HttpSession session) {
-        session.setAttribute("index", null);
-        session.setAttribute("selectedWagonClass", null);
-        session.setAttribute("selectedWagon", null);
-        session.setAttribute("wagons", null);
-        session.setAttribute("seats", null);
+        session.removeAttribute("index");
 
         return "redirect:admin";
     }

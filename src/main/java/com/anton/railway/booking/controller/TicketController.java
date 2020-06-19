@@ -44,14 +44,8 @@ public class TicketController {
     }
 
     @GetMapping("/setTrip")
-    public String setTrip(@RequestParam(required = false, name = "trip_id") String tripId, HttpSession session) {
-        session.setAttribute("trip", tripService.findTripDtoById(Long.parseLong(tripId)));
-        session.removeAttribute("selectedWagonClass");
-        session.removeAttribute("wagons");
-        session.removeAttribute("selectedWagon");
-        session.removeAttribute("seats");
-        session.removeAttribute("selectedSeat");
-        session.removeAttribute("ticket");
+    public String setTrip(@RequestParam(required = false, name = "trip_id") Long tripId, HttpSession session) {
+        session.setAttribute("trip", tripService.findTripDtoById(tripId));
 
         return "redirect:trip";
     }
