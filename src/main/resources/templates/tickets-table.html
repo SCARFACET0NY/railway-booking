@@ -2,15 +2,15 @@
     <table class="table table-hover">
         <thead class="bg-info text-dark">
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Wagon Class</th>
-            <th>Wagon Number</th>
-            <th>Seat Number</th>
-            <th>Price</th>
-            <th>Remove</th>
-            <th>Change</th>
+            <th th:text="#{booking.register.first}"></th>
+            <th th:text="#{booking.register.last}"></th>
+            <th th:text="#{booking.register.email}"></th>
+            <th th:text="#{booking.ticket.wagon.class}"></th>
+            <th th:text="#{booking.ticket.wagon.number}"></th>
+            <th th:text="#{booking.ticket.seat.number}"></th>
+            <th th:text="#{booking.ticket.price}"></th>
+            <th th:text="#{booking.ticket.remove}"></th>
+            <th th:text="#{booking.ticket.change}"></th>
         </tr>
         </thead>
         <tbody class="bg-dark text-light">
@@ -27,12 +27,13 @@
                     <td>
                         <form method="post" th:action="@{admin/cancelTicket}">
                             <input type="hidden" name="ticket_id" value="${ticket.ticket.ticketId}">
-                            <button type="submit" class="btn btn-info">Cancel Ticket</button>
+                            <button type="submit" class="btn btn-info" th:text="#{booking.ticket.cancel}"></button>
                         </form>
                     </td>
                     <td>
                         <a type="submit" role="button" class="btn btn-info"
-                           data-toggle="collapse" th:href="@{'#collapse' + ${index.index}}">Change Place</a>
+                           data-toggle="collapse" th:href="@{'#collapse' + ${index.index}}"
+                           th:text="#{booking.ticket.change.place}"></a>
                     </td>
                 </tr>
                 <tr th:id="'collapse' + ${index.index}"

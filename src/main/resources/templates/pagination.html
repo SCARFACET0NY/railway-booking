@@ -1,6 +1,6 @@
 <ul class="pagination" xmlns:th="http://www.thymeleaf.org">
     <li class="page-item">
-        <a class="page-link" th:href="@{''(page=${page - 1})}" th:text="'Previous'"
+        <a class="page-link" th:href="@{''(page=${page - 1})}" th:text="#{booking.page.previous}"
            th:classappend="${page < 1 ? 'disabled' : ''}"></a>
     </li>
     <li class="page-item" th:each="i : ${#numbers.sequence(0, numOfPages - 1)}">
@@ -8,7 +8,7 @@
            th:text="${i + 1}"></a>
     </li>
     <li class="page-item ">
-        <a class="page-link" th:href="@{''(page=${page + 1})}" th:text="'Next'"
+        <a class="page-link" th:href="@{''(page=${page + 1})}" th:text="#{booking.page.next}"
            th:classappend="${page >= numOfPages - 1 ? 'disabled' : ''}"></a>
     </li>
 </ul>

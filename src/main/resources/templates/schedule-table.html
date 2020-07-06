@@ -1,13 +1,13 @@
 <table class="table table-hover" xmlns:th="http://www.thymeleaf.org" th:fragment="schedule-table">
     <thead class="bg-info text-dark">
         <tr>
-            <th>Train Number</th>
-            <th>From</th>
-            <th>To</th>
-            <th>Departure</th>
-            <th>Arrival</th>
-            <th>Prices from</th>
-            <th>Action</th>
+            <th th:text="#{booking.ticket.train.number}"></th>
+            <th th:text="#{booking.ticket.city.from}"></th>
+            <th th:text="#{booking.ticket.city.to}"></th>
+            <th th:text="#{booking.ticket.time.departure}"></th>
+            <th th:text="#{booking.ticket.time.arrival}"></th>
+            <th th:text="#{booking.ticket.price.from}"></th>
+            <th th:text="#{booking.ticket.action}"></th>
         </tr>
     </thead>
     <tbody class="bg-dark text-light">
@@ -23,7 +23,7 @@
             <td>
                 <form method="get" th:action="@{/setTrip}">
                     <input type="hidden" name="trip_id" th:value="${trip.tripId}">
-                    <button class="btn btn-info" type="submit">Buy Ticket</button>
+                    <button class="btn btn-info" type="submit" th:text="#{booking.ticket.buy}"></button>
                 </form>
             </td>
         </tr>

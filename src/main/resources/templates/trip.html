@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/main.css}"/>
-    <title>Trip</title>
+    <title th:text="#{booking.trip}"></title>
 </head>
 <body>
     <div th:replace="header"></div>
@@ -17,46 +17,46 @@
             <div class="col-md-4">
                 <form method="get" th:action="@{/setWagonClass}">
                     <div class="form-group">
-                        <label for="wagon_class" th:text="'Wagon Class:'"></label>
+                        <label for="wagon_class" th:text="#{booking.ticket.wagon.class} + ':'"></label>
                         <select id="wagon_class" name="wagon_class" class="form-control">
                             <option th:each="wagonClass : ${trip.wagonClasses}" th:value="${wagonClass}"
                                     th:selected="${selectedWagonClass != null && selectedWagonClass == wagonClass}"
                                     th:text="${wagonClass}"></option>
                         </select>
                     </div>
-                    <button class="btn btn-lg btn-info btn-block" type="submit">Choose Class</button>
+                    <button class="btn btn-lg btn-info btn-block" type="submit" th:text="#{booking.choose.class}"></button>
                 </form>
             </div>
             <div class="col-md-4">
                 <form th:if="${wagons != null}" method="get" th:action="@{/setWagon}">
                     <div class="form-group">
-                        <label for="wagon_id" th:text="'Wagon Number:'"></label>
+                        <label for="wagon_id" th:text="#{booking.ticket.wagon.number} + ':'"></label>
                         <select id="wagon_id" name="wagon_id" class="form-control">
                             <option th:each="wagon : ${wagons}" th:value="${wagon.wagonId}" th:text="${wagon.wagonNumber}"
                                     th:selected="${selectedWagon != null && selectedWagon.wagonId == wagon.wagonId}"
                                     ></option>
                         </select>
                     </div>
-                    <button class="btn btn-lg btn-info btn-block" type="submit">Choose Wagon</button>
+                    <button class="btn btn-lg btn-info btn-block" type="submit" th:text="#{booking.choose.wagon}"></button>
                 </form>
             </div>
             <div class="col-md-4">
                 <form th:if="${seats != null}" method="get" th:action="@{/setSeat}">
                     <div class="form-group">
-                        <label for="seat_id" th:text="'Seat Number:'"></label>
+                        <label for="seat_id" th:text="#{booking.ticket.seat.number} + ':'"></label>
                         <select id="seat_id" name="seat_id" class="form-control">
                             <option th:each="seat : ${seats}" th:value="${seat.tripSeatId}"
                                     th:selected="${selectedSeat != null && selectedSeat.tripSeatId == seat.tripSeatId}"
                                     th:text="${seat.seat.seatNumber}"></option>
                         </select>
                     </div>
-                    <button class="btn btn-lg btn-info btn-block" type="submit">Choose Seat</button>
+                    <button class="btn btn-lg btn-info btn-block" type="submit" th:text="#{booking.choose.seat}"></button>
                 </form>
             </div>
         </div>
         <div class="show-ticket">
             <form method="get" th:if="${selectedSeat != null}" th:action="@{/showTicket}">
-                <button type="submit" class="btn btn-lg btn-dark btn-block">Show Ticket</button>
+                <button type="submit" class="btn btn-lg btn-dark btn-block" th:text="#{booking.ticket.show}"></button>
             </form>
         </div>
     </div>
@@ -64,16 +64,16 @@
         <table class="table table-hover">
             <thead class="bg-info text-dark">
                 <tr>
-                    <th>Train Number</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Departure</th>
-                    <th>Arrival</th>
-                    <th>Duration</th>
-                    <th>Wagon Number</th>
-                    <th>Seat Number</th>
-                    <th>Price</th>
-                    <th>Action</th>
+                    <th th:text="#{booking.ticket.train.number}"></th>
+                    <th th:text="#{booking.ticket.city.from}"></th>
+                    <th th:text="#{booking.ticket.city.to}"></th>
+                    <th th:text="#{booking.ticket.time.departure}"></th>
+                    <th th:text="#{booking.ticket.time.arrival}"></th>
+                    <th th:text="#{booking.trip.duration}"></th>
+                    <th th:text="#{booking.ticket.wagon.number}"></th>
+                    <th th:text="#{booking.ticket.seat.number}"></th>
+                    <th th:text="#{booking.ticket.price}"></th>
+                    <th th:text="#{booking.ticket.action}"></th>
                 </tr>
             </thead>
             <tbody class="bg-dark text-light">
@@ -89,7 +89,7 @@
                     <td th:text="${ticket.price}"></td>
                     <td>
                         <form method="post" th:action="@{/addTicket}">
-                            <button type="submit" class="btn btn-info" th:text="'Add to Cart'"></button>
+                            <button type="submit" class="btn btn-info" th:text="#{booking.cart.add}"></button>
                         </form>
                     </td>
                 </tr>

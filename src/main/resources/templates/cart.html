@@ -5,24 +5,24 @@
     <link rel="stylesheet" type="text/css" th:href="@{css/normalize.css}"/>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/main.css}"/>
-    <title>Cart</title>
+    <title th:text="#{booking.cart}"></title>
 </head>
 <body>
     <div class="container-fluid cart">
-        <h2 class="cart-header" th:text="'Tickets'"></h2>
+        <h2 class="cart-header" th:text="#{booking.tickets}"></h2>
 
         <th:block th:if="${not #maps.isEmpty(session.cart)}">
             <table class="table table-hover">
                 <tr class="bg-info text-dark">
-                    <th>Train Number</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Departure</th>
-                    <th>Arrival</th>
-                    <th>Wagon Number</th>
-                    <th>Seat Number</th>
-                    <th>Price</th>
-                    <th>Action</th>
+                    <th th:text="#{booking.ticket.train.number}"></th>
+                    <th th:text="#{booking.ticket.city.from}"></th>
+                    <th th:text="#{booking.ticket.city.to}"></th>
+                    <th th:text="#{booking.ticket.time.departure}"></th>
+                    <th th:text="#{booking.ticket.time.arrival}"></th>
+                    <th th:text="#{booking.ticket.wagon.number}"></th>
+                    <th th:text="#{booking.ticket.seat.number}"></th>
+                    <th th:text="#{booking.ticket.price}"></th>
+                    <th th:text="#{booking.ticket.action}"></th>
                 </tr>
                 <tr class="bg-dark text-light" th:each="ticket : ${session.cart.values()}">
                     <td th:text="${ticket.ticket.seat.trip.train.trainNumber}"></td>
@@ -36,19 +36,19 @@
                     <td>
                         <form method="post" th:action="@{/removeTicket}">
                             <input type="hidden" name="seat_id" th:value="${ticket.ticket.seat.tripSeatId}">
-                            <button type="submit" class="btn btn-info" th:text="'Remove'"></button>
+                            <button type="submit" class="btn btn-info" th:text="#{booking.ticket.remove}"></button>
                         </form>
                     </td>
                 </tr>
             </table>
-            <p class="total" th:text="'Total: ' + ${session.total}"></p>
+            <p class="total" th:text="#{booking.cart.total} + ': ' + ${session.total}"></p>
 
             <form th:action="@{/pay}" method="post">
-                <button type="submit" class="btn btn-lg btn-info btn-block" th:text="'Pay'"></button>
+                <button type="submit" class="btn btn-lg btn-info btn-block" th:text="#{booking.cart.pay}"></button>
             </form>
         </th:block>
 
-        <a class="btn btn-lg btn-dark btn-block home" th:href="@{/}" th:text="'Home'"></a>
+        <a class="btn btn-lg btn-dark btn-block home" th:href="@{/}" th:text="#{booking.home}"></a>
     </div>
 
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>

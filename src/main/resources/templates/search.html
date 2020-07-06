@@ -4,15 +4,15 @@
         <form th:method="get" th:action="@{/search}">
             <div class="row">
                 <div class="col-md-3">
-                    <label for="departure">Departure City:</label>
+                    <label for="departure" th:text="#{booking.search.departure} + ':'"></label>
                     <input id="departure" type="text" class="form-control" name="departure">
                 </div>
                 <div class="col-md-3">
-                    <label for="arrival">Arrival City:</label>
+                    <label for="arrival" th:text="#{booking.search.arrival} + ':'"></label>
                     <input id="arrival" type="text" class="form-control" name="arrival">
                 </div>
                 <div class="col-md-3">
-                    <label for="date">Date:</label>
+                    <label for="date" th:text="#{booking.search.date} + ':'"></label>
                     <input id="date" type="date" class="form-control" name="date">
                 </div>
                 <div class="col-md-3">

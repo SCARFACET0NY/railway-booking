@@ -19,8 +19,8 @@
         <div class="btn-group btn-group-lg" sec:authorize="isAuthenticated()">>
             <div class="btn-group">
                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                    <span th:text="(${session.total}?:'0.00') + ' uah'"></span><br/>
-                    <span th:text="(${session.cart?.size()}?:'0') + ' tickets'"></span>
+                    <span th:text="(${session.total}?:'0.00') + ' ' + #{booking.uah}"></span><br/>
+                    <span th:text="(${session.cart?.size()}?:'0') + ' ' + #{booking.tickets.small}"></span>
                 </button>
                 <div class="dropdown-menu">
                     <th:block th:each="ticket : ${session.cart?.values()}">
@@ -29,19 +29,20 @@
                             ${ticket.ticket.price} + 'uah'"></span>
                         <div class="dropdown-divider"></div>
                     </th:block>
-                    <span class="dropdown-item" th:text="'Total: ' + (${session.total}?:'0.00') + ' uah'"></span>
+                    <span class="dropdown-item" th:text="#{booking.total} + ': ' + (${session.total}?:'0.00') + ' ' +
+                        #{booking.uah}"></span>
                 </div>
             </div>
 
             <button type="button" class="btn btn-info">
-                <a th:href="@{/cart}" class="nav-link text-light" th:text="'Checkout'"></a>
+                <a th:href="@{/cart}" class="nav-link text-light" th:text="#{booking.checkout}"></a>
             </button>
         </div>
         <a type="button" class="btn btn-light btn-lg" th:href="@{/admin}" sec:authorize="hasAuthority('ROLE_ADMIN')"
-           th:text="'Admin'"></a>
+           th:text="#{booking.admin}"></a>
         <a type="button" class="btn btn-light btn-lg" th:href="@{/login}" sec:authorize="isAnonymous()"
            th:text="#{booking.login}"></a>
         <a type="button" class="btn btn-light btn-lg" th:href="@{/logout}" sec:authorize="isAuthenticated()"
-           th:text="'Logout'"></a>
+           th:text="#{booking.logout}"></a>
     </nav>
 </header>
