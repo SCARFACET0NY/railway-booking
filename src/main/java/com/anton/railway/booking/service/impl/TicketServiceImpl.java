@@ -7,7 +7,6 @@ import com.anton.railway.booking.entity.Trip;
 import com.anton.railway.booking.entity.TripSeat;
 import com.anton.railway.booking.entity.WagonType;
 import com.anton.railway.booking.entity.enums.SeatStatus;
-import com.anton.railway.booking.exception.PaymentException;
 import com.anton.railway.booking.exception.TicketException;
 import com.anton.railway.booking.repository.PaymentRepository;
 import com.anton.railway.booking.repository.TicketRepository;
