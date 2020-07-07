@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
 @Controller
@@ -17,7 +18,11 @@ public class SearchController {
     }
 
     @GetMapping("/")
-    public String getSearchPage() {
+    public String getSearchPage(Model model, HttpSession session) {
+        if (session.getAttribute("mailSuccess") != null) {
+            model.addAttribute("mailSuccess", session.getAttribute("mailSuccess"));
+            session.setAttribute("mailSuccess", null);
+        }
         return "index";
     }
 

@@ -1,4 +1,7 @@
 <div class="container" th:if="${not #lists.isEmpty(trips)}" xmlns:th="http://www.thymeleaf.org">
-    <h2 th:text="#{booking.search.trains}"></h2>
+    <h2 th:text="#{booking.trains}"></h2>
     <div th:replace="schedule-table"></div>
+</div>
+<div class="container" th:if="${trips != null && #lists.size(trips) == 0}" xmlns:th="http://www.thymeleaf.org">
+    <h2 th:text="#{booking.search.empty}"></h2>
 </div>

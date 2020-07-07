@@ -75,6 +75,7 @@ public class CartController {
             paymentService.savePaymentWithTickets(paymentService.createPayment(user, cart));
             emailService.sendEmail(user.getEmail(), "Tickets from Railway Booking",
                     emailService.createEmailText(user, cart, total));
+            session.setAttribute("mailSuccess", user.getEmail());
 
             cart.clear();
             session.removeAttribute("cart");

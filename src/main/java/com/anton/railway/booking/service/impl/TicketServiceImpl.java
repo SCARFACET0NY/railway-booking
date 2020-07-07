@@ -24,7 +24,7 @@ import java.util.List;
 
 @Service
 public class TicketServiceImpl implements TicketService {
-    public static final Integer ROWS_PER_PAGE = 2;
+    public static final Integer ROWS_PER_PAGE = 5;
     private final PaymentRepository paymentRepository;
     private final TicketRepository ticketRepository;
     private final TripSeatRepository tripSeatRepository;

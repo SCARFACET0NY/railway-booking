@@ -11,6 +11,9 @@
 <body>
     <div th:replace="header"></div>
     <div th:replace="sub-header"></div>
+    <div class="alert alert-success" th:if="${mailSuccess}">
+        <strong th:text="#{booking.payment.success} + ' ' + ${mailSuccess}"></strong>
+    </div>
     <div th:replace="search"></div>
     <div th:replace="trips"></div>
     <div th:replace="footer"></div>

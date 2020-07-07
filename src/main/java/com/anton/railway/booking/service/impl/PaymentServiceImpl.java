@@ -47,7 +47,6 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    @Transactional
     public Payment save(Payment payment) {
         return paymentRepository.save(payment);
     }
@@ -82,6 +81,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    @Transactional
     public Payment savePaymentWithTickets(Payment payment) {
         payment.getTickets().forEach(ticket -> {
             ticket.setPayment(payment);
