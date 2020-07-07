@@ -6,10 +6,12 @@ import com.anton.railway.booking.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @Controller
@@ -30,7 +32,9 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute User user) {
+    public String register(@Valid @ModelAttribute User user, BindingResult result) {
+        if (result.hasErrors()) return "register";
+
         user.setAccountStatus(AccountStatus.CUSTOMER);
         user.setDateJoined(LocalDateTime.now());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

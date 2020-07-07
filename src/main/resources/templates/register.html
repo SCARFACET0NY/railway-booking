@@ -13,6 +13,7 @@
             <h2 th:text="#{booking.register}"></h2>
             <form th:action="@{/register}" th:object="${user}" method="post" id="registerForm" >
                 <div class="form-group">
+                    <p th:errors="*{firstName}" class="red"></p>
                     <label for="first-name" th:text="#{booking.register.first} + ':'"></label>
                     <input type="text" id="first-name" class="form-control"
                            placeholder="Enter First Name"
@@ -20,6 +21,7 @@
                            th:field="*{firstName}">
                 </div>
                 <div class="form-group">
+                    <p th:errors="*{lastName}" class="red"></p>
                     <label for="last-name" th:text="#{booking.register.last} + ':'"></label>
                     <input type="text" id="last-name" class="form-control"
                            placeholder="Enter Last Name"
@@ -27,6 +29,7 @@
                            th:field="*{lastName}">
                 </div>
                 <div class="form-group">
+                    <p th:errors="*{phone}" class="red"></p>
                     <label for="phone" th:text="#{booking.register.phone} + ':'"></label>
                     <input type="tel" id="phone" class="form-control"
                            placeholder="Format: 123-456-78-90"
@@ -35,6 +38,7 @@
                            th:field="*{phone}">
                 </div>
                 <div class="form-group">
+                    <p th:errors="*{email}" class="red"></p>
                     <label for="email" th:text="#{booking.register.email} + ':'"></label>
                     <input type="email" id="email" class="form-control"
                            placeholder="Enter Email"
@@ -42,6 +46,7 @@
                            th:field="*{email}">
                 </div>
                 <div class="form-group">
+                    <p th:errors="*{cardNumber}" class="red"></p>
                     <label for="card-number" th:text="#{booking.register.card.number} + ':'"></label>
                     <input type="number" id="card-number" class="form-control"
                            placeholder="Enter Card Number"
@@ -50,6 +55,7 @@
                            th:field="*{cardNumber}">
                 </div>
                 <div class="form-group">
+                    <p th:errors="*{username}" class="red"></p>
                     <label for="username" th:text="#{booking.login.username} + ':'"></label>
                     <input type="text" id="username" class="form-control"
                            placeholder="Enter username"
@@ -58,6 +64,7 @@
                            th:field="*{username}">
                 </div>
                 <div class="form-group">
+                    <p th:errors="*{password}" class="red"></p>
                     <label for="password" th:text="#{booking.login.password} + ':'"></label>
                     <input type="password" id="password" class="form-control"
                            placeholder="Enter password"
